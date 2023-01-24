@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - 81:80
+    restart: unless-stopped
+    networks:
+      - srs
+    volumes:
+      - ./storage:/usr/share/nginx/html/
+      - ./nginx.conf:/etc/nginx/
+
+networks:
+  srs:
+    driver: bridge
+  
